@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{2EDB3F9A-0FF1-40E1-8451-55E1FA70F90F}</ProjectGuid>
+    <ProjectGuid>{529C1149-DDEE-477E-9276-39BC25C411B8}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Editor</RootNamespace>
+    <RootNamespace>SkySakuraEngine</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -78,6 +78,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);.\Platform\lib</LibraryPath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);.\Platform\include</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -109,10 +111,12 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);glfw3.lib;opengl32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -154,16 +158,61 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Editor.cpp" />
+    <ClCompile Include="Function\EngineCore\Engine.cpp" />
+    <ClCompile Include="Platform\glad\glad.c" />
+    <ClCompile Include="SkySakuraEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SkySakuraEngine\SkySakuraEngine.vcxproj">
-      <Project>{529c1149-ddee-477e-9276-39bc25c411b8}</Project>
-      <Name>SkySakuraEngine</Name>
-    </ProjectReference>
+    <Folder Include="Core\JSONUtility\" />
+    <Folder Include="Function\GameWorld\" />
+    <Folder Include="Platform\glExtension\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Core\DataStructures\Array.h" />
+    <ClInclude Include="Core\DataStructures\Compare\Greater.h" />
+    <ClInclude Include="Core\DataStructures\Compare\Less.h" />
+    <ClInclude Include="Core\DataStructures\Dictionary\DictionaryValue.h" />
+    <ClInclude Include="Core\DataStructures\Dictionary\SetValue.h" />
+    <ClInclude Include="Core\DataStructures\DynamicString.h" />
+    <ClInclude Include="Core\DataStructures\List.h" />
+    <ClInclude Include="Core\DataStructures\Map.h" />
+    <ClInclude Include="Core\DataStructures\PriorityQueue.h" />
+    <ClInclude Include="Core\DataStructures\Queue.h" />
+    <ClInclude Include="Core\DataStructures\Set.h" />
+    <ClInclude Include="Core\DataStructures\Stack.h" />
+    <ClInclude Include="Core\DataStructures\String.h" />
+    <ClInclude Include="Core\Delegate\Delegate.h" />
+    <ClInclude Include="Core\LinearAlgebra\Matrix\Matrix2f.h" />
+    <ClInclude Include="Core\LinearAlgebra\Matrix\Matrix2i.h" />
+    <ClInclude Include="Core\LinearAlgebra\Matrix\Matrix3f.h" />
+    <ClInclude Include="Core\LinearAlgebra\Matrix\Matrix3i.h" />
+    <ClInclude Include="Core\LinearAlgebra\Matrix\Matrix4f.h" />
+    <ClInclude Include="Core\LinearAlgebra\Matrix\Matrix4i.h" />
+    <ClInclude Include="Core\LinearAlgebra\Vector\Vector2f.h" />
+    <ClInclude Include="Core\LinearAlgebra\Vector\Vector2i.h" />
+    <ClInclude Include="Core\LinearAlgebra\Vector\Vector3f.h" />
+    <ClInclude Include="Core\LinearAlgebra\Vector\Vector3i.h" />
+    <ClInclude Include="Core\LinearAlgebra\Vector\Vector4f.h" />
+    <ClInclude Include="Core\LinearAlgebra\Vector\Vector4i.h" />
+    <ClInclude Include="Core\MathFunc\Mathf.h" />
+    <ClInclude Include="Core\Reflection\Function.h" />
+    <ClInclude Include="Core\SmartPointer\ControlBlock.h" />
+    <ClInclude Include="Core\SmartPointer\SharedPtr.h" />
+    <ClInclude Include="Core\SmartPointer\UniquePtr.h" />
+    <ClInclude Include="Function\EngineCore\Engine.h" />
+    <ClInclude Include="Platform\include\glad\glad.h" />
+    <ClInclude Include="Platform\include\GLFW\glfw3.h" />
+    <ClInclude Include="Platform\include\GLFW\glfw3native.h" />
+    <ClInclude Include="Platform\include\KHR\khrplatform.h" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Content Include="Core\Core.md" />
+    <Content Include="Core\DataStructures\DataStructures.md" />
+    <Content Include="Core\LinearAlgebra\LinearAlgebra.md" />
+    <Content Include="Core\LinearAlgebra\Matrix\MatrixFeatures.md" />
+    <Content Include="Core\LinearAlgebra\Vector\VectorFeatures.md" />
+    <Content Include="Platform\lib\glfw3.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,0 +1,21 @@
+﻿#pragma once
+#include "glad/glad.h"
+#include "GLFW/glfw3.h"
+
+class Engine
+{
+public:
+    Engine();
+    
+    void Run();
+    
+    void ShutDown();
+    
+    ~Engine();
+    
+private:
+    GLFWwindow* window_;
+    void process_logic_();
+    void process_rendering_();
+    
+};

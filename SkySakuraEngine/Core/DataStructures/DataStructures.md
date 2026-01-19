@@ -6,7 +6,7 @@
 
 ## 内容进度备忘
 
-- [X] [定长数组`Array.h`](#定长数组arrayh)
+- [X] 定长数组[`Array.h`](#定长数组arrayh)
 - [X] 变长数组[`List.h`](./List.h)
 - [X] 栈[`Stack.h`](./Stack.h)
 - [X] 队列[`Queue.h`](./Queue.h)
@@ -43,6 +43,8 @@ int size_;//数组的大小
 ```
 
 ## 函数说明
+
+待补
 
 ### 构造函数与析构函数
 

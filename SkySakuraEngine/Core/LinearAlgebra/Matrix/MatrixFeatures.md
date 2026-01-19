@@ -21,14 +21,42 @@
 
 ## 函数实现说明
 
-待补
-
 ### 构造函数
 
+* 默认构造函数`Matrix()`，所有数值全部置零
+* 拷贝构造函数`Matrix(const Matrix& m)`
+* 从花括号列表（如`{1,2,3,4}`）构造函数：
+  * 从一阶花括号列表构造函数`Matrix(const std::initializer_list<int>& list)`
+  * 从二阶花括号列表构造函数`Matrix(const std::initializer_list<std::initializer_list<int>>& list)`
+
+---
 ### `=`重载
 
+* 默认`=`重载`Matrix& operator=(const Matrix& m)`
+* 从花括号列表（如`{1,2,3,4}`）的`=`重载：
+  * 从一阶花括号列表的`=`重载`Matrix& operator=(const std::initializer_list<int>& list)`
+  * 从二阶花括号列表的`=`重载`Matrix& operator=(const std::initializer_list<std::initializer_list<int>>& list)`
+
+---
 ### 成员访问
+
+* 成员访问函数`T& at(int row,int col)`
+
+不允许使用`[]`进行矩阵成员访问，以避免可能的 bug 。
+
+---
 
 ### 四则运算重载
 
+* 矩阵与向量相乘`Vector operator*(Vector& v) const`
+* 矩阵与矩阵相乘`Matrix operator*(Matrix& m) const`
+
+根据相关运算律，不允许向量乘以一个矩阵。
+
+---
 ### 重要矩阵运算
+
+* 求矩阵的转置`Matrix rotate() const`
+* 求矩阵的行列式`T det() const`
+* 获取一个标准矩阵 $I$ `static Matrix identity()`
+* [ ] 求矩阵的逆（有难度，待补）

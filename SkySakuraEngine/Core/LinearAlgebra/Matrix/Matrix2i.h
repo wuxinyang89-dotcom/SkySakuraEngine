@@ -98,20 +98,12 @@ public:
     {
         if (row<0||row>2||col<0||col>2)
         {
-            throw std::out_of_range("Argument matrix must be of size 2");
+            throw std::out_of_range("You cannot get a element that index is not in the matrix");
         }
         return matrix_value_[row*2+col];
     }
-
-    [[nodiscard]] Matrix2i rotate() const
-    {
-        return Matrix2i({
-            matrix_value_[0],matrix_value_[2],
-            matrix_value_[1],matrix_value_[3]
-        });
-    }
     
-    Vector2i operator*(const Vector2i& v) const
+    Vector2i operator*(Vector2i& v) const
     {
         return {
             matrix_value_[0]*v.x()+matrix_value_[1]*v.y(),
@@ -128,10 +120,23 @@ public:
             matrix_value_[2]*matrix.matrix_value_[1]+matrix_value_[3]*matrix.matrix_value_[0],
         });
     }
+    
+    [[nodiscard]] Matrix2i rotate() const
+    {
+        return Matrix2i({
+            matrix_value_[0],matrix_value_[2],
+            matrix_value_[1],matrix_value_[3]
+        });
+    }
 
     [[nodiscard]] int det() const
     {
         return matrix_value_[0]*matrix_value_[3]-matrix_value_[1]*matrix_value_[2];
+    }
+    
+    static Matrix2i identity()
+    {
+        return Matrix2i({1,0,0,1});
     }
 private:
     int matrix_value_[4];

@@ -108,5 +108,3 @@
 * 向量为点的判断`bool isPoint() const`
 * 向量为方向的判断`bool isDirection() const`
 * 对于四维向量的重要向量运算，只允许两个方向间的运算
-
----

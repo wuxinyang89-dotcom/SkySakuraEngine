@@ -120,33 +120,72 @@ public:
         }
         return new_str;
     }
-    
-    int find(const String& str) const
+
+    [[nodiscard]] int find(const String& str) const
     {
-        int* pre_process=new int[size_];
+        int* pre_process=new int[str.size_];
         int count=0;
         for (int i=1;i<str.size_;i++)
         {
-            if (str.data_[count]==data_[i])
+            if (str.data_[count]==str.data_[i])
             {
                 count++;
                 pre_process[i]=count;
             }
-            else if (count!=0)
+            else
             {
-                count--;
-                for (int j=count;j>0;j--)
+                for (;count>0;count--)
                 {
-                    
+                    if (str.data_[count]==str.data_[i])
+                    {
+                        int j=count;
+                        for (;j>=0;j--)
+                        {
+                            if (str.data_[j]!=str.data_[i+j-count])
+                            {
+                                break;
+                            }
+                        }
+                        if (j<0)
+                        {
+                            pre_process[i]=count;
+                            break;
+                        }
+                    }
                 }
             }
         }
+        count=0;
+        for (int i=0;i<size_;i++)
+        {
+            if (str.data_[count]==data_[i])
+            {
+                count++;
+                if (count>=str.size_)
+                {
+                    delete[] pre_process;
+                    return i;
+                }
+            }
+            else
+            {
+                count=pre_process[count]+1;
+            }
+        }
         delete[] pre_process;
+        return -1;
     }
     
-    int find(const char* str) const
+    int find(const char* src_str) const
     {
-        int* pre_process=new int[size_];
+        auto ptr=src_str;
+        int str_size=0;
+        while (ptr!=nullptr)
+        {
+            ptr++;
+            str_size++;
+        }
+        int* pre_process=new int[str_size];
         
         delete[] pre_process;
     }

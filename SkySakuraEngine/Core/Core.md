@@ -5,7 +5,7 @@
 ## 已完成
 * 数学函数库`./MathFunc/`
   * 使用`Mathf`命名空间，里面放一些可能会用到的数学工具函数，如取绝对值，浮点数取等
-  * 无理数相关计算（如$\sin$、$\log$、$\sqrt x$）暂不实现，使用`cmath`的相关函数
+  * 无理数相关计算（如 $\sin$ 、 $\log$ 、 $\sqrt{x}$ ）暂不实现，使用`cmath`的相关函数
   * 按需添加功能
 ## 正在实现中
 * [高性能数据结构](./DataStructures/DataStructures.md)`./DataStructures/`

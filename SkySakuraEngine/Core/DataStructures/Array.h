@@ -40,29 +40,6 @@ public:
             ++ptr;
         }
     }
-    
-    T& operator[](const int index)
-    {
-        if (index >= size_||index < 0)
-        {
-            throw std::out_of_range("Index out of range");
-        }
-        return data_[index];
-    }
-    
-    T& operator[](const int index) const
-    {
-        if (index >= size_||index < 0)
-        {
-            throw std::out_of_range("Index out of range");
-        }
-        return data_[index];
-    }
-    
-    int size() const
-    {
-        return size_;
-    }
 
     Array(const Array& array)
     {
@@ -106,6 +83,29 @@ public:
             ++ptr;
         }
         return *this;
+    }
+    
+    T& operator[](const int index)
+    {
+        if (index >= size_||index < 0)
+        {
+            throw std::out_of_range("Index out of range");
+        }
+        return data_[index];
+    }
+    
+    T& operator[](const int index) const
+    {
+        if (index >= size_||index < 0)
+        {
+            throw std::out_of_range("Index out of range");
+        }
+        return data_[index];
+    }
+    
+    int size() const
+    {
+        return size_;
     }
     
     T* begin()

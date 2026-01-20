@@ -111,7 +111,25 @@ public:
         };
     }
     
+    Vector2i multiply(Vector2i& v) const
+    {
+        return {
+            matrix_value_[0]*v.x()+matrix_value_[1]*v.y(),
+            matrix_value_[2]*v.x()+matrix_value_[3]*v.y()
+        };
+    }
+    
     Matrix2i operator*(const Matrix2i& matrix) const
+    {
+        return Matrix2i({
+            matrix_value_[0]*matrix.matrix_value_[0]+matrix_value_[1]*matrix.matrix_value_[2],
+            matrix_value_[0]*matrix.matrix_value_[1]+matrix_value_[1]*matrix.matrix_value_[3],
+            matrix_value_[2]*matrix.matrix_value_[0]+matrix_value_[3]*matrix.matrix_value_[2],
+            matrix_value_[2]*matrix.matrix_value_[1]+matrix_value_[3]*matrix.matrix_value_[0],
+        });
+    }
+    
+    Matrix2i multiply(const Matrix2i& matrix) const
     {
         return Matrix2i({
             matrix_value_[0]*matrix.matrix_value_[0]+matrix_value_[1]*matrix.matrix_value_[2],
@@ -137,6 +155,19 @@ public:
     static Matrix2i identity()
     {
         return Matrix2i({1,0,0,1});
+    }
+    
+    Matrix2i inverse() const
+    {
+        int det=det();
+        if (det==0)
+        {
+            throw std::out_of_range("Inverse matrix requires its det is not zero");
+        }
+        return Matrix2i({
+            matrix_value_[3]/det,-matrix_value_[2]/det,
+            -matrix_value_[1]/det,matrix_value_[1]/det
+        });
     }
 private:
     int matrix_value_[4];

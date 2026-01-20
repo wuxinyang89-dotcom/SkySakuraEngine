@@ -51,12 +51,16 @@
 * 矩阵与向量相乘`Vector operator*(Vector& v) const`
 * 矩阵与矩阵相乘`Matrix operator*(Matrix& m) const`
 
-根据相关运算律，不允许向量乘以一个矩阵。
+考虑到矩阵乘法不支持结合律，为了避免运算的顺序混乱，另行还提供相应的乘法函数：
+* 矩阵与向量相乘`Vector multiply(Vector& v) const`
+* 矩阵与矩阵相乘`Matrix multiply(Matrix& m) const`
+
+根据相关运算律，不允许向量乘以一个矩阵，故不设计向量乘以矩阵的重载。
 
 ---
 ### 重要矩阵运算
 
 * 求矩阵的转置`Matrix rotate() const`
 * 求矩阵的行列式`T det() const`
-* 获取一个标准矩阵 $I$ `static Matrix identity()`
-* [ ] 求矩阵的逆（有难度，待补）
+* 获取一个单位矩阵 $I$ `static Matrix identity()`
+* 求矩阵的逆 $M^{-1}$ `Matrix inverse() const`

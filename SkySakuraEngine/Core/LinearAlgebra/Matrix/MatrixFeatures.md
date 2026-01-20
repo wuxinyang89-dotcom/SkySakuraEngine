@@ -51,7 +51,7 @@
 * 矩阵与向量相乘`Vector operator*(Vector& v) const`
 * 矩阵与矩阵相乘`Matrix operator*(Matrix& m) const`
 
-考虑到矩阵乘法不支持结合律，为了避免运算的顺序混乱，另行还提供相应的乘法函数：
+考虑到矩阵乘法不支持结合律，另行还提供相应的乘法函数：
 * 矩阵与向量相乘`Vector multiply(Vector& v) const`
 * 矩阵与矩阵相乘`Matrix multiply(Matrix& m) const`
 

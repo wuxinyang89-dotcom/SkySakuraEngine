@@ -164,7 +164,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\JSONUtility\" />
-    <Folder Include="Function\GameWorld\" />
+    <Folder Include="Function\GameWorld\Level\" />
+    <Folder Include="Function\GameWorld\Object\" />
     <Folder Include="Function\OpenGLExtension\" />
   </ItemGroup>
   <ItemGroup>
@@ -212,6 +213,7 @@
     <Content Include="Core\LinearAlgebra\LinearAlgebra.md" />
     <Content Include="Core\LinearAlgebra\Matrix\MatrixFeatures.md" />
     <Content Include="Core\LinearAlgebra\Vector\VectorFeatures.md" />
+    <Content Include="Function\Function.md" />
     <Content Include="Platform\lib\glfw3.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -165,7 +165,7 @@
   <ItemGroup>
     <Folder Include="Core\JSONUtility\" />
     <Folder Include="Function\GameWorld\" />
-    <Folder Include="Platform\glExtension\" />
+    <Folder Include="Function\OpenGLExtension\" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\DataStructures\Array.h" />

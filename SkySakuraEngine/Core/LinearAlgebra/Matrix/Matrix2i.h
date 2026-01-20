@@ -121,22 +121,22 @@ public:
     
     Matrix2i operator*(const Matrix2i& matrix) const
     {
-        return Matrix2i({
+        return {
             matrix_value_[0]*matrix.matrix_value_[0]+matrix_value_[1]*matrix.matrix_value_[2],
             matrix_value_[0]*matrix.matrix_value_[1]+matrix_value_[1]*matrix.matrix_value_[3],
             matrix_value_[2]*matrix.matrix_value_[0]+matrix_value_[3]*matrix.matrix_value_[2],
             matrix_value_[2]*matrix.matrix_value_[1]+matrix_value_[3]*matrix.matrix_value_[0],
-        });
+        };
     }
     
     Matrix2i multiply(const Matrix2i& matrix) const
     {
-        return Matrix2i({
+        return {
             matrix_value_[0]*matrix.matrix_value_[0]+matrix_value_[1]*matrix.matrix_value_[2],
             matrix_value_[0]*matrix.matrix_value_[1]+matrix_value_[1]*matrix.matrix_value_[3],
             matrix_value_[2]*matrix.matrix_value_[0]+matrix_value_[3]*matrix.matrix_value_[2],
             matrix_value_[2]*matrix.matrix_value_[1]+matrix_value_[3]*matrix.matrix_value_[0],
-        });
+        };
     }
     
     [[nodiscard]] Matrix2i rotate() const
@@ -147,7 +147,7 @@ public:
         });
     }
 
-    [[nodiscard]] int det() const
+    [[nodiscard]] int determinant() const
     {
         return matrix_value_[0]*matrix_value_[3]-matrix_value_[1]*matrix_value_[2];
     }
@@ -159,15 +159,15 @@ public:
     
     Matrix2i inverse() const
     {
-        int det=det();
+        int det=determinant();
         if (det==0)
         {
-            throw std::out_of_range("Inverse matrix requires its det is not zero");
+            throw std::out_of_range("Inverse matrix requires its determinant is not zero");
         }
-        return Matrix2i({
+        return {
             matrix_value_[3]/det,-matrix_value_[2]/det,
             -matrix_value_[1]/det,matrix_value_[1]/det
-        });
+        };
     }
 private:
     int matrix_value_[4];

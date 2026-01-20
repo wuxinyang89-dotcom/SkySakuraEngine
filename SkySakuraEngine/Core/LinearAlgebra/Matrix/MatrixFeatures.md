@@ -13,7 +13,7 @@
 目前已经做完了下述矩阵对象：
 
 * [x] [`Matrix2i.h`](./Matrix2i.h)：二阶整型矩阵
-* [ ] [`Matrix2f.h`](./Matrix2f.h)：二阶浮点型矩阵
+* [x] [`Matrix2f.h`](./Matrix2f.h)：二阶浮点型矩阵
 * [ ] [`Matrix3i.h`](./Matrix3i.h)：三阶整型矩阵
 * [ ] [`Matrix3f.h`](./Matrix3f.h)：三阶浮点型矩阵
 * [ ] [`Matrix4i.h`](./Matrix4i.h)：四阶整型矩阵（用于齐次坐标）
@@ -29,6 +29,9 @@
   * 从一阶花括号列表构造函数`Matrix(const std::initializer_list<int>& list)`
   * 从二阶花括号列表构造函数`Matrix(const std::initializer_list<std::initializer_list<int>>& list)`
 
+*限浮点矩阵：*
+* 从整型矩阵构造函数`Matrixf(Matrixi& mi)`
+
 ---
 ### `=`重载
 
@@ -36,6 +39,9 @@
 * 从花括号列表（如`{1,2,3,4}`）的`=`重载：
   * 从一阶花括号列表的`=`重载`Matrix& operator=(const std::initializer_list<int>& list)`
   * 从二阶花括号列表的`=`重载`Matrix& operator=(const std::initializer_list<std::initializer_list<int>>& list)`
+
+*限浮点矩阵：*
+* 从整型矩阵的`=`重载`Matrixf& operator=(Matrixi& mi)`
 
 ---
 ### 成员访问
@@ -49,11 +55,11 @@
 ### 四则运算重载
 
 * 矩阵与向量相乘`Vector operator*(Vector& v) const`
-* 矩阵与矩阵相乘`Matrix operator*(Matrix& m) const`
+* 矩阵与矩阵相乘`Matrix operator*(const Matrix& m) const`
 
 考虑到矩阵乘法不支持结合律，另行还提供相应的乘法函数：
 * 矩阵与向量相乘`Vector multiply(Vector& v) const`
-* 矩阵与矩阵相乘`Matrix multiply(Matrix& m) const`
+* 矩阵与矩阵相乘`Matrix multiply(const Matrix& m) const`
 
 根据相关运算律，不允许向量乘以一个矩阵，故不设计向量乘以矩阵的重载。
 
@@ -61,6 +67,6 @@
 ### 重要矩阵运算
 
 * 求矩阵的转置`Matrix rotate() const`
-* 求矩阵的行列式`T det() const`
+* 求矩阵的行列式`T determinant() const`
 * 获取一个单位矩阵 $I$ `static Matrix identity()`
 * 求矩阵的逆 $M^{-1}$ `Matrix inverse() const`

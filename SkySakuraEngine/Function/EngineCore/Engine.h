@@ -18,6 +18,7 @@ private:
     unsigned int shaderProgram;
     unsigned int VAO;
     unsigned int VBO;
+    unsigned int EBO;
     
     void process_logic_();
     void process_rendering_();

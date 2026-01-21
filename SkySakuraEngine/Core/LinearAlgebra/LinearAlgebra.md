@@ -11,4 +11,6 @@
 ## 子条目
 
  - [向量`Vector`功能说明](./Vector/VectorFeatures.md)
+   - 已经全部完成
  - [矩阵`Matrix`功能说明](./Matrix/MatrixFeatures.md)
+   - 缺三阶和四阶矩阵

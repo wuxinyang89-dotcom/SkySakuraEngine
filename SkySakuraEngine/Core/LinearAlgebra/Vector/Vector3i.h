@@ -46,6 +46,8 @@ public:
         return z_;
     }
     
+    int operator[](int index)=delete;
+    
     Vector3i operator+(const Vector3i& v) const
     {
         return {x_+v.x_,y_+v.y_,z_+v.z_};

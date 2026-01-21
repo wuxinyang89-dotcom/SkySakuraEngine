@@ -27,12 +27,12 @@ public:
         w_=w;
     }
     
-    Vector4i(Vector3i& v)
+    Vector4i(Vector3i& v,const int w)
     {
         x_=v.x();
         y_=v.y();
         z_=v.z();
-        w_=0;
+        w_=w;
     }
     
     Vector4i& operator=(const Vector4i& v)
@@ -47,12 +47,12 @@ public:
         return *this;
     }
     
-    Vector4i& operator=(Vector3i& v)
+    Vector4i& operator=(Vector3i& v,const int w)
     {
         x_=v.x();
         y_=v.y();
         z_=v.z();
-        w_=0;
+        w_=w;
         return *this;
     }
     
@@ -75,6 +75,8 @@ public:
     {
         return w_;
     }
+    
+    int operator[](int index)=delete;
     
     Vector4i operator+(const Vector4i& v) const
     {
@@ -126,7 +128,7 @@ public:
         x_-=v.x_;
         y_-=v.y_;
         z_-=v.z_;
-        w_-=v.w_;
+        w_=0;
     }
     
     void operator-()

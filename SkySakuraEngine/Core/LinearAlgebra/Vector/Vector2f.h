@@ -59,6 +59,8 @@ public:
         return y_;
     }
     
+    int operator[](int index)=delete;
+    
     Vector2f operator+(const Vector2f& v) const
     {
         return {x_+v.x_,y_+v.y_};

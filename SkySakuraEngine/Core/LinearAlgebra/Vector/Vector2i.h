@@ -27,19 +27,7 @@ public:
         return y_;
     }
     
-    int operator[](int index)
-    {
-        if(index<0||index>=2)
-        {
-            throw std::out_of_range("index out of range");
-        }
-        
-        if(index==0)
-        {
-            return x_;
-        }
-        return y_;
-    }
+    int operator[](int index)=delete;
     
     Vector2i operator+(const Vector2i& v) const
     {

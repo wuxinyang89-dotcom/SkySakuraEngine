@@ -10,14 +10,14 @@
 
 ## 类实现说明
 
-目前已经做完了下述向量对象：
+目前向量对象已全部完成，预定目标已经完成。
 
 * [x] [`Vector2i.h`](Vector2i.h)：二阶整型向量
 * [x] [`Vector2f.h`](Vector2f.h)：二阶浮点型向量
 * [x] [`Vector3i.h`](Vector3i.h)：三阶整型向量
 * [x] [`Vector3f.h`](Vector3f.h)：三阶浮点型向量
 * [x] [`Vector4i.h`](Vector4i.h)：四阶整型向量（用于齐次坐标）
-* [ ] [`Vector4f.h`](Vector4f.h)：四阶浮点型向量（用于齐次坐标）
+* [x] [`Vector4f.h`](Vector4f.h)：四阶浮点型向量（用于齐次坐标）
 
 ## 函数实现说明
 
@@ -36,7 +36,12 @@
 * 从整型构造函数`Vectorf(Vectori& vi)`
 
 *限四维向量：*
-* 从三维向量构造函数`Vector4(Vector3& v3)`
+* 从三维向量构造函数`Vector4(Vector3& v3,const int w)`
+  * 既可构造为点，又可构造为方向，取决于w 
+
+*限四维浮点型向量：*
+* 从三维整型向量构造函数`Vector4f(Vector3i& v3_i,const int w)`
+  * 既可构造为点，又可构造为方向，取决于w
 
 目前暂不考虑从低维向量向高维的构造，低维向量与高维向量的向量运算也不互通。
 
@@ -49,7 +54,11 @@
 * 从整型`=`重载`Vectorf& operator=(Vectori& vi)`
 
 *限四维向量：*
-* 从三维向量`=`重载`Vector4(Vector3& v3)`
+* 从三维向量`=`重载`Vector4& operator=(Vector3& v3)`
+
+*限四维浮点型向量：*
+* 从三维整型向量`=`重载`Vector4f& operator=(Vector3i& v3_i,const int w)`
+  * 既可构造为点，又可构造为方向，取决于w
 
 ---
 ### 成员访问
@@ -67,15 +76,15 @@
 * 向量加减赋值重载`void operator+=(const Vector& v)`、`void operator-=(const Vector& v)`
 * 向量自取负重载`void operator-()`
 * 向量相等与不等重载`bool operator==(const Vector& v) const`、`bool operator!=(const Vector& v) const`
-* 向量数乘数除重载（同型重载）`VectorT operator*(const T num) const`、`VectorT operator\(const T num) const`
-* 向量友元数乘数除重载（同型重载）`friend VectorT operator*(const T num, const Vector& v)`、`friend VectorT operator\(const T num, const Vector& v)`
-  * 即可以实现 a*Vector的运算
+* 向量数乘数除重载（同型重载）`VectorT operator*(const T num) const`、`VectorT operator/(const T num) const`
+* 向量友元数乘数除重载（同型重载）`friend VectorT operator*(const T num, const Vector& v)`、`friend VectorT operator/(const T num, const Vector& v)`
+  * 即可以实现 $a \times V$的运算
 * 向量数乘数除赋值重载（同型重载）`void operator*=(const T num)`、`void operator/=(const T num)`
   * 对于数乘数除赋值，不实现友元重载，以免形式上的混乱。
 
 *限浮点型向量：*
-* 向量数乘数除重载（从整数运算）`Vectorf operator*(const int num) const`、`Vectorf operator\(const int num) const`
-* 向量友元数乘数除重载（从整数运算）`friend Vectorf operator*(const int num, const Vectorf& v)`、`friend Vectorf operator\(const int num, const Vectorf& v)`
+* 向量数乘数除重载（从整数运算）`Vectorf operator*(const int num) const`、`Vectorf operator/(const int num) const`
+* 向量友元数乘数除重载（从整数运算）`friend Vectorf operator*(const int num, const Vectorf& v)`、`friend Vectorf operator/(const int num, const Vectorf& v)`
 * 向量数乘数除赋值重载（从整数运算）`void operator*=(const int num)`、`void operator/=(const int num)`
 
 对于四维函数的四则运算，做出了一定要求：
@@ -107,4 +116,9 @@
 
 * 向量为点的判断`bool isPoint() const`
 * 向量为方向的判断`bool isDirection() const`
-* 对于四维向量的重要向量运算，只允许两个方向间的运算
+* 对于四维向量的重要向量运算，只允许方向间的运算，即参与运算的向量的 $w\neq 0$
+
+*限四维浮点型向量：*
+* 标准化点向量`Vector4f standardize() const`
+  * 将点化为 $w=1$ 的形式
+  * 只允许点的运算，即 $w=0$

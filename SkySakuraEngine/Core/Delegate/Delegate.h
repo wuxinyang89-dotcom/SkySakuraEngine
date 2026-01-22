@@ -1,20 +1,33 @@
 ﻿#pragma once
 #include <stdexcept>
 
-template<typename Return,typename... Args>
-class Delegate
+#include "FuncValue.h"
+
+template<typename Reutrn,typename... Args>
+class Delegate;
+
+template<typename Class,typename Return,typename... Args>
+class Delegate<Return,Args...>
 {
 public:
-    typedef Return(*delegateFunc)(Args...);
+    using delegateFunc=Return(Class::*)(Args...);
     
     Delegate()
     {
         size_=0;
         total_size_=4;
-        delegate_list_=new delegateFunc[total_size_];
+        delegate_list_=new FuncValue<Return, Args...>[total_size_];
     }
     
-    void operator+=(delegateFunc func)
+    Delegate(Delegate& delegate)=delete;
+    
+    Delegate& operator=(Delegate& delegate)=delete;
+    
+    Delegate(Delegate&& delegate)=delete;
+    
+    Delegate& operator=(Delegate&& delegate)=delete;
+    
+    void bind(Class classname,delegateFunc func)
     {
         if (size_ == total_size_)
         {
@@ -30,7 +43,7 @@ public:
             {
                 total_size_<<=1;
             }
-            delegateFunc* temp=new delegateFunc[total_size_];
+            delegateFunc* temp=new FuncValue<Return, Args...>[total_size_];
             for (int i=0;i<size_;i++)
             {
                 temp[i]=delegate_list_[i];
@@ -42,7 +55,7 @@ public:
         size_++;
     }
     
-    void operator+=(Delegate& delegate)
+    void bind(Delegate& delegate)
     {
         while (static_cast<unsigned int>(size_+delegate.count())>total_size_)
         {
@@ -73,7 +86,7 @@ public:
         size_+=delegate.count();
     }
     
-    void operator-=(delegateFunc func)
+    void unbind(delegateFunc func)
     {
         int index=0;
         for (int i=0;i<size_;i++)
@@ -96,13 +109,23 @@ public:
         return size_;
     }
     
+    Return invoke(Args arg...)
+    {
+        Return result;
+        for (int i=0;i<size_;i++)
+        {
+            result=(*delegate_list_[i])(arg...);
+        }
+        return result;
+    }
+    
     ~Delegate()
     {
         delete [] delegate_list_;
     }
     
 private:
-    delegateFunc* delegate_list_;
+    FuncValue<Return,Args...>* delegate_list_;
     int size_;
     int total_size_;
 };

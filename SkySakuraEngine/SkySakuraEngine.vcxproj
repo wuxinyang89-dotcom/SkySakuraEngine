@@ -183,6 +183,8 @@
     <ClInclude Include="Core\DataStructures\Stack.h" />
     <ClInclude Include="Core\DataStructures\String.h" />
     <ClInclude Include="Core\Delegate\Delegate.h" />
+    <ClInclude Include="Core\Delegate\FuncValue.h" />
+    <ClInclude Include="Core\Delegate\IFunc.h" />
     <ClInclude Include="Core\LinearAlgebra\Matrix\Matrix2f.h" />
     <ClInclude Include="Core\LinearAlgebra\Matrix\Matrix2i.h" />
     <ClInclude Include="Core\LinearAlgebra\Matrix\Matrix3f.h" />

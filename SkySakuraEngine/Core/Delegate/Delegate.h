@@ -2,21 +2,20 @@
 #include <stdexcept>
 
 #include "FuncValue.h"
+#include "FuncValueWithClass.h"
 
-template<typename Reutrn,typename... Args>
-class Delegate;
 
-template<typename Class,typename Return,typename... Args>
-class Delegate<Return,Args...>
+template<typename Return,typename... Args>
+class Delegate
 {
 public:
-    using delegateFunc=Return(Class::*)(Args...);
+    //using delegateFunc=Return(Class::*)(Args...);
     
     Delegate()
     {
         size_=0;
         total_size_=4;
-        delegate_list_=new FuncValue<Return, Args...>[total_size_];
+        delegate_list_=new IFunc<Return, Args...>*[total_size_];
     }
     
     Delegate(Delegate& delegate)=delete;
@@ -27,31 +26,45 @@ public:
     
     Delegate& operator=(Delegate&& delegate)=delete;
     
-    void bind(Class classname,delegateFunc func)
+    void bind(Return(*func)(Args...))
     {
         if (size_ == total_size_)
         {
-            if (total_size_==~(1<<31))
-            {
-                throw std::out_of_range("List overflow");
-            }
-            if (total_size_==1<<30)
-            {
-                total_size_=~(1<<31);
-            }
-            else
-            {
-                total_size_<<=1;
-            }
-            delegateFunc* temp=new FuncValue<Return, Args...>[total_size_];
-            for (int i=0;i<size_;i++)
-            {
-                temp[i]=delegate_list_[i];
-            }
-            delete [] delegate_list_;
-            delegate_list_=temp;
+            expand_size_when_add();
         }
-        delegate_list_[size_]=func;
+        delegate_list_[size_]=new FuncValue<Return, Args...>(func);
+        size_++;
+    }
+    
+    void bind(const Return(*func)(Args...))
+    {
+        if (size_ == total_size_)
+        {
+            expand_size_when_add();
+        }
+        delegate_list_[size_]=new FuncValue<Return, Args...>(func);
+        size_++;
+    }
+    
+    template<typename Class>
+    void bind(Class classname,Return(Class::*func)(Args...))
+    {
+        if (size_ == total_size_)
+        {
+            expand_size_when_add();
+        }
+        delegate_list_[size_]=new FuncValueWithClass<Class,Return, Args...>(classname,func);
+        size_++;
+    }
+    
+    template<typename Class>
+    void bind(Class classname,Return(Class::*func)(Args...) const)
+    {
+        if (size_ == total_size_)
+        {
+            expand_size_when_add();
+        }
+        delegate_list_[size_]=new FuncValueWithClass<Class,Return, Args...>(classname,func);
         size_++;
     }
     
@@ -59,25 +72,7 @@ public:
     {
         while (static_cast<unsigned int>(size_+delegate.count())>total_size_)
         {
-            if (total_size_==~(1<<31))
-            {
-                throw std::out_of_range("List overflow");
-            }
-            if (total_size_==1<<30)
-            {
-                total_size_=~(1<<31);
-            }
-            else
-            {
-                total_size_<<=1;
-            }
-            delegateFunc* temp=new delegateFunc[total_size_];
-            for (int i=0;i<size_;i++)
-            {
-                temp[i]=delegate_list_[i];
-            }
-            delete [] delegate_list_;
-            delegate_list_=temp;
+            expand_size_when_add();
         }
         for (int i=0;i<delegate.count();i++)
         {
@@ -86,7 +81,7 @@ public:
         size_+=delegate.count();
     }
     
-    void unbind(delegateFunc func)
+    /*void unbind(delegateFunc func)
     {
         int index=0;
         for (int i=0;i<size_;i++)
@@ -102,19 +97,19 @@ public:
             delegate_list_[i]=delegate_list_[i+1];
         }
         size_--;
-    }
+    }*/
     
     int count() const
     {
         return size_;
     }
     
-    Return invoke(Args arg...)
+    Return invoke(Args... arg)
     {
         Return result;
         for (int i=0;i<size_;i++)
         {
-            result=(*delegate_list_[i])(arg...);
+            result=delegate_list_[i]->invoke(arg...);
         }
         return result;
     }
@@ -125,7 +120,30 @@ public:
     }
     
 private:
-    FuncValue<Return,Args...>* delegate_list_;
+    IFunc<Return,Args...>** delegate_list_;
     int size_;
     int total_size_;
+    
+    void expand_size_when_add()
+    {
+        if (total_size_==~(1<<31))
+        {
+            throw std::out_of_range("List overflow");
+        }
+        if (total_size_==1<<30)
+        {
+            total_size_=~(1<<31);
+        }
+        else
+        {
+            total_size_<<=1;
+        }
+        IFunc<Return,Args...>** temp=new IFunc<Return,Args...>*[total_size_];
+        for (int i=0;i<size_;i++)
+        {
+            temp[i]=delegate_list_[i];
+        }
+        delete [] delegate_list_;
+        delegate_list_=temp;
+    }
 };

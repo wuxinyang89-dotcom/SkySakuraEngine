@@ -16,7 +16,9 @@ int main(int argc, char* argv[])
     //Function<decltype(&Array<int>::size)> func(&myArray,&Array<int>::size);
     //std::cout<<(func())<<std::endl;
     
-   //Delegate<int> delegate
+   Delegate<int> delegate;
+    delegate.bind(myArray,&Array<int>::size);
+    delegate.invoke();
     
     try
     {

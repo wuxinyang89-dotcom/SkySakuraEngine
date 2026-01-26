@@ -82,10 +82,17 @@ public:
     {
         if (this != &list)
         {
-            delete [] array_;
-            size_=list.size_;
-            total_size_=list.total_size_;
-            array_=new T[total_size_];
+            if (total_size_<list.size_)
+            {
+                delete [] array_;
+                size_=list.size_;
+                total_size_=list.total_size_;
+                array_=new T[total_size_];
+            }
+            else
+            {
+                size_=list.size_;
+            }
             for (int i=0;i<size_;i++)
             {
                 array_[i]=list.array_[i];
@@ -100,10 +107,17 @@ public:
         {
             throw std::out_of_range("Array size must be less than 0x80000000");
         }
-        delete [] array_;
-        size_=list.size();
-        total_size_=calc_total_size(size_);
-        array_=new T[total_size_];
+        if (total_size_<list.size())
+        {
+            delete [] array_;
+            size_=list.size();
+            total_size_=calc_total_size(size_);
+            array_=new T[total_size_];
+        }
+        else
+        {
+            size_=list.size();
+        }
         const T* ptr=list.begin();
         for(int i=0;i<size_;i++)
         {

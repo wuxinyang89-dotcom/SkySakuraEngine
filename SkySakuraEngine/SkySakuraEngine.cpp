@@ -3,6 +3,7 @@
 
 #include "Core/DataStructures/Array.h"
 //#include "Core/Reflection/Function.h"
+#include "Core/DataStructures/Stack.h"
 #include "Core/Delegate/Delegate.h"
 #include "Core/SmartPointer/UniquePtr.h"
 #include "Function/EngineCore/Engine.h"

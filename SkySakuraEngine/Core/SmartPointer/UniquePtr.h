@@ -19,16 +19,27 @@ public:
         unique_data_=data;
     }
 
-    UniquePtr(const UniquePtr& other){
+    UniquePtr(const UniquePtr& other)=delete;
+    /*{
         if (other.unique_data_!=nullptr)
         {
             unique_data_=other.unique_data_;
             other.unique_data_=nullptr;
         }
+    }*/
+    
+    UniquePtr(UniquePtr&& other) noexcept
+    {
+        if (this->unique_data_!=nullptr)
+        {
+            delete this->unique_data_;
+        }
+        unique_data_=other.unique_data_;
+        other.unique_data_=nullptr;
     }
     
-    UniquePtr& operator=(const UniquePtr& other)
-    {
+    UniquePtr& operator=(const UniquePtr& other)=delete;
+    /*{
         if (this!=&other)
         {
             if (this->unique_data_!=nullptr)
@@ -42,13 +53,24 @@ public:
             }
         }
         return *this;
+    }*/
+    
+    UniquePtr& operator=(UniquePtr&& other) noexcept
+    {
+        if (this->unique_data_!=nullptr)
+        {
+            delete this->unique_data_;
+        }
+        unique_data_=other.unique_data_;
+        other.unique_data_=nullptr;
+        return *this;
     }
     
-    void make_unique()
+    /*void make_unique()
     {
         
-        //*unique_data_=data;
-    }
+        // *unique_data_=data;
+    }*/
     
     T* operator->()
     {

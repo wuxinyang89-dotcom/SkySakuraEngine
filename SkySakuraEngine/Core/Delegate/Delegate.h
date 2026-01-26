@@ -148,8 +148,6 @@ public:
         size_--;
     }
     
-
-    
     int count() const
     {
         return size_;

@@ -38,7 +38,9 @@ public:
        ++control_block_->share_cnt_;
    }
     
-    SharedPtr(const SharedPtr<T>& other)
+    SharedPtr(const SharedPtr<T>& other)=delete;
+    
+    SharedPtr(SharedPtr<T>&& other) noexcept
    {
        control_block_=other.control_block_;
        if (control_block_!=nullptr)
@@ -51,7 +53,9 @@ public:
        }
    }
     
-    SharedPtr<T>& operator=(const SharedPtr<T>& other)
+    SharedPtr<T>& operator=(const SharedPtr<T>& other)=delete;
+    
+    SharedPtr<T>& operator=(SharedPtr<T>&& other) noexcept
    {
        if (this != &other)
        {

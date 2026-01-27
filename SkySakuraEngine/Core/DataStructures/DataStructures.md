@@ -18,7 +18,7 @@
   - [X] 封装的键值类[`SetValue.h`](./Dictionary/SetValue.h)
 - [ ] 定长字符串[`String.h`](./String.h)
   - 用于静态文本，拼接开销大。
-  - 简单实现了 KMP 匹配算法，但还需要检查。
+  - 简单实现了 KMP 匹配算法，可能要用其他方法替代 KMP。
   - 同时，正在考虑是否实现对于小字符串的 SSO 机制。也许可以把地址用于 SSO（？）
   - 目前正在考虑字符串如何提供 Unicode 支持。
 - [ ] 变长字符串[`DynamicString.h`](./DynamicString.h)

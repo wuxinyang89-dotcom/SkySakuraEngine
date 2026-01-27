@@ -257,4 +257,20 @@ public:
         }
         return new_str;
     }
+    
+    int next(int index) const
+    {
+        char origin_char=data_[index];
+        index++;
+        while ((origin_char&0x80)==0x80)
+        {
+            if ((data_[index]&0xC0)!=0x80)
+            {
+                throw std::runtime_error("Illegal UTF-8 string!");
+            }
+            index++;
+            origin_char<<=1;
+        }
+        return index;
+    }
 };

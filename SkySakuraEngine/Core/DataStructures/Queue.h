@@ -43,6 +43,7 @@ public:
     {
         if (this!=&other)
         {
+            delete[] array_;
             total_size_=other.total_size_;
             head_=other.head_;
             rear_=other.rear_;

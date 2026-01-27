@@ -27,9 +27,17 @@ public:
     {
         if (this!=&stack)
         {
-            size_=stack.size_;
-            total_size_=stack.size_;
-            array_=new T[total_size_];
+            if (total_size_<stack.size_)
+            {
+                delete [] array_;
+                size_=stack.size_;
+                total_size_=stack.total_size_;
+                array_=new T[total_size_];
+            }
+            else
+            {
+                size_=stack.size_;
+            }
             for (int i=0;i<size_;i++)
             {
                 array_[i]=stack.array_[i];

@@ -33,9 +33,17 @@ public:
         if (this!=&other)
         {
             comp_=other.comp_;
-            size_=other.size_;
-            total_size_=other.total_size_;
-            data_=new T[size_];
+            if (total_size_<other.size_)
+            {
+                delete [] data_;
+                size_=other.size_;
+                total_size_=other.total_size_;
+                data_=new T[total_size_];
+            }
+            else
+            {
+                size_=other.size_;
+            }
             for (int i=0;i<size_;i++)
             {
                 data_[i]=other.data_[i];

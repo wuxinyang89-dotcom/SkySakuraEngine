@@ -46,7 +46,7 @@
 ---
 ### 成员访问
 
-* 成员访问函数`T& at(int row,int col)`
+* 成员访问函数`T& at(const int row,const int col)`
 
 不允许使用`[]`进行矩阵成员访问，以避免可能的 bug 。
 

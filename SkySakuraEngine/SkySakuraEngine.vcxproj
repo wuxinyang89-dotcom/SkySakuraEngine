@@ -164,6 +164,7 @@
     <ClCompile Include="SkySakuraEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Core\GarbageCollection\" />
     <Folder Include="Core\JSONUtility\" />
     <Folder Include="Function\GameWorld\Level\" />
     <Folder Include="Function\GameWorld\Object\" />

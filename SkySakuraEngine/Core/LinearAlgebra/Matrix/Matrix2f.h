@@ -68,7 +68,7 @@ public:
         return *this;
     }
     
-    Matrix2f& operator=(const Matrix2i& mi)
+    Matrix2f& operator=(Matrix2i& mi)
     {
         for(int i=0;i<4;i++)
         {
@@ -148,6 +148,137 @@ public:
             matrix_value_[2]*m.matrix_value_[0]+matrix_value_[3]*m.matrix_value_[2],
             matrix_value_[2]*m.matrix_value_[1]+matrix_value_[3]*m.matrix_value_[0],
         };
+    }
+    
+    Matrix2f operator*(const int num) const
+    {
+        float new_num=static_cast<float>(num);
+        return {
+            matrix_value_[0]*new_num,matrix_value_[1]*new_num,
+            matrix_value_[2]*new_num,matrix_value_[3]*new_num
+        };
+    }
+    
+    Matrix2f operator*(const float num) const
+    {
+        return {
+            matrix_value_[0]*num,matrix_value_[1]*num,
+            matrix_value_[2]*num,matrix_value_[3]*num
+        };
+    }
+    
+    Matrix2f operator/(const int num) const
+    {
+        float new_num=static_cast<float>(1./num);
+        return {
+            matrix_value_[0]*new_num,matrix_value_[1]*new_num,
+            matrix_value_[2]*new_num,matrix_value_[3]*new_num
+        };
+    }
+    
+    Matrix2f operator/(const float num) const
+    {
+        float inv_num=1.0f/num;
+        return {
+            matrix_value_[0]*inv_num,matrix_value_[1]*inv_num,
+            matrix_value_[2]*inv_num,matrix_value_[3]*inv_num
+        };
+    }
+    
+    friend Matrix2f operator*(const int num,const Matrix2f& matrix)
+    {
+        float new_num=static_cast<float>(num);
+        return {
+            matrix.matrix_value_[0]*new_num,matrix.matrix_value_[1]*new_num,
+            matrix.matrix_value_[2]*new_num,matrix.matrix_value_[3]*new_num
+        };
+    }
+    
+    friend Matrix2f operator/(const int num,const Matrix2f& matrix)
+    {
+        float new_num=static_cast<float>(1./num);
+        return {
+            matrix.matrix_value_[0]*new_num,matrix.matrix_value_[1]*new_num,
+            matrix.matrix_value_[2]*new_num,matrix.matrix_value_[3]*new_num
+        };
+    }
+    
+    friend Matrix2f operator*(const float num,const Matrix2f& matrix)
+    {
+        return {
+            matrix.matrix_value_[0]*num,matrix.matrix_value_[1]*num,
+            matrix.matrix_value_[2]*num,matrix.matrix_value_[3]*num
+        };
+    }
+    
+    friend Matrix2f operator/(const float num,const Matrix2f& matrix)
+    {
+        float inv_num=1.0f/num;
+        return {
+            matrix.matrix_value_[0]*inv_num,matrix.matrix_value_[1]*inv_num,
+            matrix.matrix_value_[2]*inv_num,matrix.matrix_value_[3]*inv_num
+        };
+    }
+    
+    void operator*=(const int num)
+    {
+        float new_num=static_cast<float>(num);
+        matrix_value_[0]*=new_num;
+        matrix_value_[1]*=new_num;
+        matrix_value_[2]*=new_num;
+        matrix_value_[3]*=new_num;
+        
+    }
+    
+    void operator/=(const int num)
+    {
+        float new_num=static_cast<float>(1./num);
+        matrix_value_[0]*=new_num;
+        matrix_value_[1]*=new_num;
+        matrix_value_[2]*=new_num;
+        matrix_value_[3]*=new_num;
+    }
+    
+    void operator*=(const float num)
+    {;
+        matrix_value_[0]*=num;
+        matrix_value_[1]*=num;
+        matrix_value_[2]*=num;
+        matrix_value_[3]*=num;
+        
+    }
+    
+    void operator/=(const float num)
+    {
+        float inv_num=1.0f/num;
+        matrix_value_[0]*=inv_num;
+        matrix_value_[1]*=inv_num;
+        matrix_value_[2]*=inv_num;
+        matrix_value_[3]*=inv_num;
+    }
+    
+    bool operator==(const Matrix2f& matrix) const
+    {
+        for(int i=0;i<4;i++)
+        {
+            if (!Mathf::FloatEqual(matrix_value_[i],matrix.matrix_value_[i]))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    bool operator!=(const Matrix2f& matrix) const
+    {
+        for(int i=0;i<4;i++)
+        {
+            if (!Mathf::FloatEqual(matrix_value_[i],matrix.matrix_value_[i]))
+            {
+                return true;
+            }
+        }
+        return false;
     }
     
     Matrix2f rotate() const

@@ -139,6 +139,80 @@ public:
         };
     }
     
+    Matrix2i operator*(const int num) const
+    {
+        return {
+            matrix_value_[0]*num,matrix_value_[1]*num,
+            matrix_value_[2]*num,matrix_value_[3]*num
+        };
+    }
+    
+    Matrix2i operator/(const int num) const
+    {
+        return {
+            matrix_value_[0]/num,matrix_value_[1]/num,
+            matrix_value_[2]/num,matrix_value_[3]/num
+        };
+    }
+    
+    friend Matrix2i operator*(const int num,const Matrix2i& matrix) const
+    {
+        return {
+            matrix.matrix_value_[0]*num,matrix.matrix_value_[1]*num,
+            matrix.matrix_value_[2]*num,matrix.matrix_value_[3]*num
+        };
+    }
+    
+    friend Matrix2i operator/(const int num,const Matrix2i& matrix) const
+    {
+        return {
+            matrix.matrix_value_[0]/num,matrix.matrix_value_[1]/num,
+            matrix.matrix_value_[2]/num,matrix.matrix_value_[3]/num
+        };
+    }
+    
+    void operator*=(const int num)
+    {
+        matrix_value_[0]*=num;
+        matrix_value_[1]*=num;
+        matrix_value_[2]*=num;
+        matrix_value_[3]*=num;
+        
+    }
+    
+    void operator/=(const int num)
+    {
+
+        matrix_value_[0]/=num;
+        matrix_value_[1]/=num;
+        matrix_value_[2]/=num;
+        matrix_value_[3]/=num;
+    }
+    
+    bool operator==(const Matrix2i& matrix) const
+    {
+        for(int i=0;i<4;i++)
+        {
+            if (matrix_value_[i]!=matrix.matrix_value_[i])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    bool operator!=(const Matrix2i& matrix) const
+    {
+        for(int i=0;i<4;i++)
+        {
+            if (matrix_value_[i]!=matrix.matrix_value_[i])
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     [[nodiscard]] Matrix2i rotate() const
     {
         return Matrix2i({

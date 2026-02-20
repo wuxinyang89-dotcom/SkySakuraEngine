@@ -14,8 +14,8 @@
 
 * [x] [`Matrix2i.h`](./Matrix2i.h)：二阶整型矩阵
 * [x] [`Matrix2f.h`](./Matrix2f.h)：二阶浮点型矩阵
-* [ ] [`Matrix3i.h`](./Matrix3i.h)：三阶整型矩阵
-* [ ] [`Matrix3f.h`](./Matrix3f.h)：三阶浮点型矩阵
+* [x] [`Matrix3i.h`](./Matrix3i.h)：三阶整型矩阵
+* [x] [`Matrix3f.h`](./Matrix3f.h)：三阶浮点型矩阵
 * [ ] [`Matrix4i.h`](./Matrix4i.h)：四阶整型矩阵（用于齐次坐标）
 * [ ] [`Matrix4f.h`](./Matrix4f.h)：四阶浮点型矩阵（用于齐次坐标）
 
@@ -62,6 +62,16 @@
 * 矩阵与矩阵相乘`Matrix multiply(const Matrix& m) const`
 
 根据相关运算律，不允许向量乘以一个矩阵，故不设计向量乘以矩阵的重载。
+
+* 矩阵的数乘与数除重载（同型重载）`Matrix operator*(const T& num)`、`Matrix operator/(const T& num)`
+* 矩阵的数乘与数除友元重载（同型重载）`friend Matrix operator*(const T& num, const Matrix& matrix)`、`friend Matrix operator/(const T& num, const Matrix& matrix)`
+* 矩阵的数乘与数除赋值重载（同型重载）`void operator*=(const T& num)`、`void operator*=(const T& num)`
+* 矩阵相等与不等重载`bool operator==(const Matrix& m) const`、`bool operator!=(const Matrix& m) const`
+
+*下述重载限浮点矩阵：*
+* 矩阵的数乘与数除重载（从整数）`Matrixf operator*(const int& num)`、`Matrixf operator/(const int& num)`
+* 矩阵的数乘与数除友元重载（从整数）`friend Matrixf operator*(const int& num, const Matrixf& matrix)`、`friend Matrix operator/(const int& num, const Matrixf& matrix)`
+* 矩阵的数乘与数除赋值重载（从整数）`void operator*=(const int& num)`、`void operator*=(const int& num)`
 
 ---
 ### 重要矩阵运算

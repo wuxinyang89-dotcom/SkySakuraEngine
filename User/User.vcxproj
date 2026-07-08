@@ -160,6 +160,12 @@
     <Folder Include="Resource\Scene\" />
     <Folder Include="Resource\Shader\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SkySakuraEngine\SkySakuraEngine.vcxproj">
+      <Project>{529c1149-ddee-477e-9276-39bc25c411b8}</Project>
+      <Name>SkySakuraEngine</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

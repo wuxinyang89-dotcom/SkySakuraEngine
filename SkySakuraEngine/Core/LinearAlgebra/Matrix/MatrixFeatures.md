@@ -16,8 +16,9 @@
 * [x] [`Matrix2f.h`](./Matrix2f.h)：二阶浮点型矩阵
 * [x] [`Matrix3i.h`](./Matrix3i.h)：三阶整型矩阵
 * [x] [`Matrix3f.h`](./Matrix3f.h)：三阶浮点型矩阵
-* [ ] [`Matrix4i.h`](./Matrix4i.h)：四阶整型矩阵（用于齐次坐标）
-* [ ] [`Matrix4f.h`](./Matrix4f.h)：四阶浮点型矩阵（用于齐次坐标）
+* [x] [`Matrix4i.h`](./Matrix4i.h)：四阶整型矩阵（用于齐次坐标）
+* [x] [`Matrix4f.h`](./Matrix4f.h)：四阶浮点型矩阵（用于齐次坐标）
+  * 四阶浮点矩阵额外提供了常用变换：`translate`、`scale`、`rotateX/Y/Z`、`rotate`（任意轴）、`perspective`、`ortho`、`lookAt`
 
 ## 函数实现说明
 

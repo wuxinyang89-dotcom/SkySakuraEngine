@@ -214,6 +214,19 @@ public:
         return index;
     }
 
+    // 返回一个以 '\0' 结尾的 C 字符串副本，可直接传给 C 接口。
+    // 注意：返回的内存由本函数新分配，调用者使用完毕后需自行 delete[] 释放。
+    [[nodiscard]] char* c_str() const
+    {
+        char* result=new char[size_+1];
+        for (int i=0;i<size_;i++)
+        {
+            result[i]=data_[i];
+        }
+        result[size_]='\0';
+        return result;
+    }
+
 private:
     // 计算 C 字符串（以 '\0' 结尾）的长度，不含结尾符
     static int c_str_length(const char* src_str)

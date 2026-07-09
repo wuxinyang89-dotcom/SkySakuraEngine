@@ -6,6 +6,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Editor", ".\Editor\Editor.v
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "User", "User\User.vcxproj", "{CFA9DE38-5DC0-4E55-86D8-2E0DACC474C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectionParser", "ReflectionParser\ReflectionParser.csproj", "{C1989B86-76E8-4EDC-BF4D-5DF34BD5C188}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -38,5 +40,13 @@ Global
 		{CFA9DE38-5DC0-4E55-86D8-2E0DACC474C7}.Release|Win32.Build.0 = Release|Win32
 		{CFA9DE38-5DC0-4E55-86D8-2E0DACC474C7}.Release|x64.ActiveCfg = Release|x64
 		{CFA9DE38-5DC0-4E55-86D8-2E0DACC474C7}.Release|x64.Build.0 = Release|x64
+		{C1989B86-76E8-4EDC-BF4D-5DF34BD5C188}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{C1989B86-76E8-4EDC-BF4D-5DF34BD5C188}.Debug|Win32.Build.0 = Debug|Any CPU
+		{C1989B86-76E8-4EDC-BF4D-5DF34BD5C188}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C1989B86-76E8-4EDC-BF4D-5DF34BD5C188}.Debug|x64.Build.0 = Debug|Any CPU
+		{C1989B86-76E8-4EDC-BF4D-5DF34BD5C188}.Release|Win32.ActiveCfg = Release|Any CPU
+		{C1989B86-76E8-4EDC-BF4D-5DF34BD5C188}.Release|Win32.Build.0 = Release|Any CPU
+		{C1989B86-76E8-4EDC-BF4D-5DF34BD5C188}.Release|x64.ActiveCfg = Release|Any CPU
+		{C1989B86-76E8-4EDC-BF4D-5DF34BD5C188}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

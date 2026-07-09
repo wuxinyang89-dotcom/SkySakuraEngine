@@ -214,6 +214,102 @@ public:
         return index;
     }
 
+    // 将字符串解析为 float
+    [[nodiscard]] float to_float() const
+    {
+        char* buf=c_str();
+        float result=0.0f;
+        float fraction=0.0f;
+        float divisor=1.0f;
+        int exp=0;
+        bool negative=false;
+        bool exp_negative=false;
+        int i=0;
+
+        // 跳过前导空格
+        while (i<size_&&(buf[i]==' '||buf[i]=='\t')) i++;
+
+        // 符号
+        if (i<size_&&(buf[i]=='-'||buf[i]=='+'))
+        {
+            negative=(buf[i]=='-');
+            i++;
+        }
+
+        // 整数部分
+        while (i<size_&&buf[i]>='0'&&buf[i]<='9')
+        {
+            result=result*10.0f+static_cast<float>(buf[i]-'0');
+            i++;
+        }
+
+        // 小数部分
+        if (i<size_&&buf[i]=='.')
+        {
+            i++;
+            while (i<size_&&buf[i]>='0'&&buf[i]<='9')
+            {
+                divisor*=10.0f;
+                fraction+=static_cast<float>(buf[i]-'0')/divisor;
+                i++;
+            }
+        }
+
+        result+=fraction;
+
+        // 指数部分
+        if (i<size_&&(buf[i]=='e'||buf[i]=='E'))
+        {
+            i++;
+            if (i<size_&&(buf[i]=='-'||buf[i]=='+'))
+            {
+                exp_negative=(buf[i]=='-');
+                i++;
+            }
+            while (i<size_&&buf[i]>='0'&&buf[i]<='9')
+            {
+                exp=exp*10+(buf[i]-'0');
+                i++;
+            }
+            float power=1.0f;
+            for (int j=0;j<exp;j++) power*=10.0f;
+            if (exp_negative) result/=power;
+            else result*=power;
+        }
+
+        delete[] buf;
+        return negative?-result:result;
+    }
+
+    // 将字符串解析为 int
+    [[nodiscard]] int to_int() const
+    {
+        char* buf=c_str();
+        int result=0;
+        bool negative=false;
+        int i=0;
+
+        // 跳过前导空格
+        while (i<size_&&(buf[i]==' '||buf[i]=='\t')) i++;
+
+        // 符号
+        if (i<size_&&(buf[i]=='-'||buf[i]=='+'))
+        {
+            negative=(buf[i]=='-');
+            i++;
+        }
+
+        // 数字部分
+        while (i<size_&&buf[i]>='0'&&buf[i]<='9')
+        {
+            result=result*10+(buf[i]-'0');
+            i++;
+        }
+
+        delete[] buf;
+        return negative?-result:result;
+    }
+
     // 返回一个以 '\0' 结尾的 C 字符串副本，可直接传给 C 接口。
     // 注意：返回的内存由本函数新分配，调用者使用完毕后需自行 delete[] 释放。
     [[nodiscard]] char* c_str() const

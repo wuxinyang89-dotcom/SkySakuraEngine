@@ -288,6 +288,21 @@ public:
         return {x_*inv_w,y_*inv_w,z_*inv_w,1};
     }
 
+    [[nodiscard]] Vector3f toVector3f() const
+    {
+        return {x_,y_,z_};
+    }
+
+    [[nodiscard]] Vector3f toCartesian() const
+    {
+        if (w_==0)
+        {
+            throw std::runtime_error("Converting a direction to Cartesian coordinates is not supported! Use toVector3f() instead.");
+        }
+        float inv_w = 1/w_;
+        return {x_*inv_w,y_*inv_w,z_*inv_w};
+    }
+
     [[nodiscard]] bool isPoint() const
     {
         return w_!=0;

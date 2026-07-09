@@ -228,6 +228,11 @@ public:
         return {y_*v.z_-z_*v.y_,x_*v.z_-z_*v.x_,0};
     }
 
+    [[nodiscard]] Vector3i toVector3i() const
+    {
+        return {x_,y_,z_};
+    }
+
     [[nodiscard]] bool isPoint() const
     {
         return w_!=0;

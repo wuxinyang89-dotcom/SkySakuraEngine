@@ -44,4 +44,5 @@ namespace Mathf
         return abs_diff <= std::numeric_limits<float>::epsilon() * 10 ||
                rel_diff <= 1e-6f;
     }
+
 }

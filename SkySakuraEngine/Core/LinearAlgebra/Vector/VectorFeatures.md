@@ -118,7 +118,16 @@
 * 向量为方向的判断`bool isDirection() const`
 * 对于四维向量的重要向量运算，只允许方向间的运算，即参与运算的向量的 $w\neq 0$
 
+*限四维向量：*
+* 提取三维向量`Vector3 toVector3() const`
+  * 直接丢弃 $w$ 分量，提取 $(x, y, z)$ 返回对应的三维向量
+  * 点和方向均可使用
+
 *限四维浮点型向量：*
 * 标准化点向量`Vector4f standardize() const`
   * 将点化为 $w=1$ 的形式
-  * 只允许点的运算，即 $w=0$
+  * 只允许点的运算，即 $w\neq0$
+* 转换为笛卡尔坐标`Vector3f toCartesian() const`
+  * 执行透视除法并提取三维坐标，即返回 $(x/w, y/w, z/w)$
+  * 只允许点的运算，即 $w\neq0$
+  * 等价于先调用 `standardize()` 再提取 xyz，但更为便捷

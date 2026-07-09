@@ -252,6 +252,11 @@ public:
     {
         return array_;
     }
+
+    int size() const
+    {
+        return size_;
+    }
     
     T* end()
     {

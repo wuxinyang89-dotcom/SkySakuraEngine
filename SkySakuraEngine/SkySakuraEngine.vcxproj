@@ -189,6 +189,7 @@
     <ClInclude Include="Core\Delegate\FuncValueWithClassConst.h" />
     <ClInclude Include="Core\Delegate\IFunc.h" />
     <ClInclude Include="Core\JSONUtility\JSONConvertor.h" />
+    <ClInclude Include="Core\JSONUtility\JSONTokenizer.h" />
     <ClInclude Include="Core\JSONUtility\Objects\JObject.h" />
     <ClInclude Include="Core\JSONUtility\Tokens\JSONToken.h" />
     <ClInclude Include="Core\LinearAlgebra\Matrix\Matrix2f.h" />

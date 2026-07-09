@@ -158,7 +158,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Core\JSONUtility\JSONConvertor.cpp" />
+
     <ClCompile Include="Function\EngineCore\Engine.cpp" />
     <ClCompile Include="Function\OpenGLExtension\Shader.cpp" />
     <ClCompile Include="Platform\glad\glad.c" />
@@ -220,6 +220,7 @@
     <Content Include=".gitignore" />
     <Content Include="Core\Core.md" />
     <Content Include="Core\DataStructures\DataStructures.md" />
+    <Content Include="Core\JSONUtility\JSONUtility.md" />
     <Content Include="Core\LinearAlgebra\LinearAlgebra.md" />
     <Content Include="Core\LinearAlgebra\Matrix\MatrixFeatures.md" />
     <Content Include="Core\LinearAlgebra\Vector\VectorFeatures.md" />

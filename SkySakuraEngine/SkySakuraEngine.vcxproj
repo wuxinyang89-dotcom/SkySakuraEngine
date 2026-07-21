@@ -206,6 +206,7 @@
     <ClInclude Include="Core\LinearAlgebra\Vector\Vector4i.h" />
     <ClInclude Include="Core\MathFunc\Mathf.h" />
     <ClInclude Include="Core\Reflection\Function.h" />
+    <ClInclude Include="Core\Reflection\TypeAnalyzer.h" />
     <ClInclude Include="Core\SmartPointer\ControlBlock.h" />
     <ClInclude Include="Core\SmartPointer\SharedPtr.h" />
     <ClInclude Include="Core\SmartPointer\UniquePtr.h" />

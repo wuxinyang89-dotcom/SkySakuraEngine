@@ -215,6 +215,9 @@
     <ClInclude Include="Platform\include\GLFW\glfw3.h" />
     <ClInclude Include="Platform\include\GLFW\glfw3native.h" />
     <ClInclude Include="Platform\include\KHR\khrplatform.h" />
+    <ClInclude Include="Sample\ReflectionMacros.h" />
+    <ClInclude Include="Sample\SampleActor.h" />
+    <ClInclude Include="Sample\SampleActor.generated.h" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
@@ -225,6 +228,7 @@
     <Content Include="Core\LinearAlgebra\Matrix\MatrixFeatures.md" />
     <Content Include="Core\LinearAlgebra\Vector\VectorFeatures.md" />
     <Content Include="Function\Function.md" />
+    <Content Include="Sample\Sample.md" />
     <Content Include="Platform\lib\glfw3.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

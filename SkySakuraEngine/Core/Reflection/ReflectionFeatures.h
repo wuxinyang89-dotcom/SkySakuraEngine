@@ -19,18 +19,34 @@
 // 属性元信息
 struct PropertyInfo
 {
+    bool isStatic;
     const char* name;
     const char* typeName;
     size_t offset;
     size_t size;
 };
 
+// 参数表信息
+struct ParamInfo
+{
+    const char* const* paramTypeName;    // 参数类型列表
+    int paramCount;                // 参数数量
+};
+
 // 函数元信息
 struct FunctionInfo
 {
     const char* name;
-    const char* returnType;
-    int paramCount;
+    const char* const* returnType;
+    const ParamInfo* paramInfo;
+    int reloadCount;
+};
+
+// 继承信息
+struct InheritanceInfo
+{
+    const char* const* parentClassName;    // 基类名字列表
+    int parentCount;                // 基类数量（多继承时 > 1）
 };
 
 // 类元信息
@@ -42,4 +58,7 @@ struct ClassInfo
     int propertyCount;
     const FunctionInfo* functions;
     int functionCount;
+    InheritanceInfo inheritance;
 };
+
+

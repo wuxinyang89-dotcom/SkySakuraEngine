@@ -168,6 +168,7 @@
     <Folder Include="Core\GarbageCollection\" />
     <Folder Include="Function\GameWorld\Level\" />
     <Folder Include="Function\GameWorld\Object\" />
+    <Folder Include="Platform\lib\" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\DataStructures\Array.h" />
@@ -205,6 +206,7 @@
     <ClInclude Include="Core\LinearAlgebra\Vector\Vector4f.h" />
     <ClInclude Include="Core\LinearAlgebra\Vector\Vector4i.h" />
     <ClInclude Include="Core\MathFunc\Mathf.h" />
+    <ClInclude Include="Core\Reflection\ClassLib.h" />
     <ClInclude Include="Core\Reflection\Function.h" />
     <ClInclude Include="Core\Reflection\ReflectionFeatures.h" />
     <ClInclude Include="Core\Reflection\TypeAnalyzer.h" />
@@ -231,7 +233,6 @@
     <Content Include="Core\LinearAlgebra\Vector\VectorFeatures.md" />
     <Content Include="Function\Function.md" />
     <Content Include="Sample\Sample.md" />
-    <Content Include="Platform\lib\glfw3.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

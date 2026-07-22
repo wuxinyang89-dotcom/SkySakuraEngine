@@ -1,3 +1,5 @@
+using ReflectionParser.Public;
+
 namespace ReflectionParser;
 
 /// <summary>
@@ -103,12 +105,19 @@ public class HeaderScanner
             foreach (var marker in ReflectionMarkers)
             {
                 if (content.Contains(marker))
+                {
+                    PublicVariables.ReflectionHeaders.Add(new HeaderInfo()
+                    {
+                        HeaderFileText = filePath,
+                        HeaderPath = content
+                    });
                     return true;
+                }
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"[错误] 读取文件失败: {filePath} - {ex.Message}");
+            throw new FileLoadException($"[错误] 读取文件失败: {filePath} - {ex.Message}");
         }
 
         return false;

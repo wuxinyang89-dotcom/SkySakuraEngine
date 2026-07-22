@@ -12,9 +12,17 @@
 // 用法: SFUNCTION() 放在成员函数上方
 #define SFUNCTION()
 
+// 标记一个枚举需要反射
+// 用法: SENUM() 放在成员枚举上方
+#define SENUM()
+
 // 生成体宏 - 由解析器在生成文件中展开为实际反射代码
 // 用法: GENERATED_BODY() 放在类体内部的第一行
 #define GENERATED_BODY()
+
+enum PackageType{
+    Public,Private,Protected    
+};
 
 // 属性元信息
 struct PropertyInfo
@@ -22,6 +30,7 @@ struct PropertyInfo
     bool isStatic;
     const char* name;
     const char* typeName;
+    PackageType packageType;
     size_t offset;
     size_t size;
 };
@@ -40,6 +49,7 @@ struct FunctionInfo
     const char* const* returnType;
     const ParamInfo* paramInfo;
     int reloadCount;
+    PackageType packageType;
 };
 
 // 继承信息
@@ -59,6 +69,13 @@ struct ClassInfo
     const FunctionInfo* functions;
     int functionCount;
     InheritanceInfo inheritance;
+};
+
+// 枚举信息
+struct EnumInfo
+{
+    const char* enumTypeName;
+    int enumCount;
 };
 
 

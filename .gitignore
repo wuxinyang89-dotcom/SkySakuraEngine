@@ -1,1 +1,45 @@
-﻿/x64/
+﻿# ========================
+# IDE / Editor
+# ========================
+.idea/
+*.user
+*.suo
+*.sln.docstates
+.vs/
+.vscode/
+cmake-build-*/
+
+# ========================
+# Build outputs
+# ========================
+/x64/
+/x86/
+/Debug/
+/Release/
+[Mm]in[Ww]deploy/
+*.exe
+*.dll
+*.pdb
+*.lib
+*.exp
+*.ilk
+*.obj
+*.pch
+*.ncb
+*.tlog
+
+# ========================
+# .NET / C# build artifacts
+# ========================
+**/bin/
+**/obj/
+*.nupkg
+*.nuget.props
+*.nuget.targets
+
+# ========================
+# OS files
+# ========================
+Thumbs.db
+.DS_Store
+*.swp

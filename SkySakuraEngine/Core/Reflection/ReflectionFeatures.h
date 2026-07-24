@@ -62,6 +62,7 @@ struct InheritanceInfo
 // 类元信息
 struct ClassInfo
 {
+    const char* namespaceName;
     const char* className;
     size_t classSize;
     const PropertyInfo* properties;
@@ -74,6 +75,8 @@ struct ClassInfo
 // 枚举信息
 struct EnumInfo
 {
+    const char* namespaceName;
+    const char* enumName;
     const char* enumTypeName;
     int enumCount;
 };

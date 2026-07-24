@@ -42,7 +42,7 @@ class Program
             Console.WriteLine();
 
             // ──────────────────────────────────────────────
-            // Step 4: 后续反射代码生成（待实现）
+            // Step 4: 解析并生成反射代码
             // ──────────────────────────────────────────────
             if (scanner.ReflectionHeaders.Count == 0)
             {
@@ -50,13 +50,18 @@ class Program
             }
             else
             {
-                Console.WriteLine($"[4/4] 准备为 {scanner.ReflectionHeaders.Count} 个文件生成反射代码...");
-                Console.WriteLine("  (代码生成器尚未实现，后续版本补充)");
+                Console.WriteLine($"[4/4] 正在解析 {scanner.ReflectionHeaders.Count} 个头文件...");
+                Console.WriteLine();
 
                 for (int i = 0; i < scanner.ReflectionHeaders.Count; i++)
                 {
                     ReflectionFileGenerator generator = new(i);
+                    generator.Parse();
+                    generator.PrintResults();
                 }
+
+                Console.WriteLine();
+                Console.WriteLine("  解析完成。");
             }
         }
         catch (Exception ex)

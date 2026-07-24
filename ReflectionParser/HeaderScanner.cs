@@ -108,8 +108,8 @@ public class HeaderScanner
                 {
                     PublicVariables.ReflectionHeaders.Add(new HeaderInfo()
                     {
-                        HeaderFileText = filePath,
-                        HeaderPath = content
+                        HeaderFileText = content,
+                        HeaderPath = filePath
                     });
                     return true;
                 }
